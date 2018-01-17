@@ -35,7 +35,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x4f2883aeeee72a82c9b8c8a73bf42d6468d9b4bf1fb1b8565cc21fdbe9c20d7e");
+uint256 hashGenesisBlock("0x922d93943e943b278b71e13cc036937188f1774746528481ec049d204656fbc5");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // Pocketmoneycoin: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -1087,15 +1087,15 @@ uint256 static GetOrphanRoot(const CBlockHeader* pblock)
 
 int64 static GetBlockValue(int nHeight, int64 nFees)
 {
-    int64 nSubsidy = 100 * COIN;
+    int64 nSubsidy = 50 * COIN;
 
             if(nHeight == 1)
             {
-            nSubsidy = 1050000 * COIN;
+            nSubsidy = 1714286 * COIN;
             }
 
-    // Subsidy is cut in half every 21000 blocks
-    nSubsidy >>= (nHeight / 21000);
+    // Subsidy is cut in half every 840000 blocks
+    nSubsidy >>= (nHeight / 840000);
 
     return nSubsidy + nFees;
 }
@@ -2747,10 +2747,10 @@ bool LoadBlockIndex()
 {
     if (fTestNet)
     {
-        pchMessageStart[0] = 0x74;
-        pchMessageStart[1] = 0x46;
-        pchMessageStart[2] = 0x77;
-        pchMessageStart[3] = 0xd2;
+        pchMessageStart[0] = 0x27;
+        pchMessageStart[1] = 0x44;
+        pchMessageStart[2] = 0xae;
+        pchMessageStart[3] = 0xd3;
         hashGenesisBlock = uint256("0x");
     }
 
@@ -2777,28 +2777,28 @@ bool InitBlockIndex() {
     // Only add the genesis block if not reindexing (in which case we reuse the one already on disk)
     if (!fReindex) {
         // Genesis Block:
-        // CBlock(hash=12a765e31ffd4059bada, PoW=0000050c34a64b415b6b, ver=1, hashPrevBlock=00000000000000000000, hashMerkleRoot=97ddfbbae6, nTime=1515909330, nBits=1e0ffff0, nNonce=0, vtx=1)
+        // CBlock(hash=12a765e31ffd4059bada, PoW=0000050c34a64b415b6b, ver=1, hashPrevBlock=00000000000000000000, hashMerkleRoot=97ddfbbae6, nTime=1516173334, nBits=1e0ffff0, nNonce=0, vtx=1)
         //   CTransaction(hash=97ddfbbae6, ver=1, vin.size=1, vout.size=1, nLockTime=0)
         //     CTxIn(COutPoint(0000000000, -1), coinbase 04ffff001d0104404e592054696d65732030352f4f63742f32303131205374657665204a6f62732c204170706c65e280997320566973696f6e6172792c2044696573206174203536)
         //     CTxOut(nValue=50.00000000, scriptPubKey=040184710fa689ad5023690c80f3a4)
         //   vMerkleTree: 97ddfbbae6
 
         // Genesis block
-        const char* pszTimestamp = "12012018";
+        const char* pszTimestamp = "17012018";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 100 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("0476f50dfced93b4f7c8ace5afe7c42b679807e82a526b9a48aafef14608c6cfdab8630a1c3a49ef7fa80fc17de00bb62143eb67b7ef2081527625b29c95f82e10") << OP_CHECKSIG;
+        txNew.vout[0].nValue = 50 * COIN;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04c81559775e74df4c33e77fd1b103f0469cde5e58ac3f9996580fe4a87f75db789ef5d284ff0a4a428780ea5a63db3007f04406ca44090b65d03be9d864ced085") << OP_CHECKSIG;
         CBlock block;
         block.vtx.push_back(txNew);
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1515909330;
+        block.nTime    = 1516173334;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 2456576;
+        block.nNonce   = 56534;
 
         if (fTestNet)
         {
@@ -2812,7 +2812,7 @@ bool InitBlockIndex() {
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
         
-        assert(block.hashMerkleRoot == uint256("0xecd846cf2a03326768e34d03cd40444950cc627c56ce4f3ca5bb5e5586380eab"));
+        assert(block.hashMerkleRoot == uint256("0x58239c04c87359747ff63f625d8c901847afa1daf753e159effa1f18893aaade"));
         if (true && block.GetHash() != hashGenesisBlock)
         {
             printf("Searching for genesis block...\n");
@@ -3113,7 +3113,7 @@ bool static AlreadyHave(const CInv& inv)
 // The message start string is designed to be unlikely to occur in normal data.
 // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
 // a large 4-byte int at any alignment.
-unsigned char pchMessageStart[4] = { 0xf4, 0x04, 0x4d, 0x5b }; // Pocketmoneycoin: increase each by adding 2 to bitcoin's value.
+unsigned char pchMessageStart[4] = { 0x51, 0x4f, 0x91, 0xad }; // Pocketmoneycoin: increase each by adding 2 to bitcoin's value.
 
 
 void static ProcessGetData(CNode* pfrom)

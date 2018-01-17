@@ -2237,8 +2237,8 @@ Address: %4
     </message>
     <message>
         <location line="-28"/>
-        <source>Listen for connections on &lt;port&gt; (default: 32255 or testnet: 42255)</source>
-        <translation>Чекати на з&apos;єднання на &lt;port&gt; (типово: 32255 або тестова мережа: 42255)</translation>
+        <source>Listen for connections on &lt;port&gt; (default: 32473 or testnet: 42473)</source>
+        <translation>Чекати на з&apos;єднання на &lt;port&gt; (типово: 32473 або тестова мережа: 42473)</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -2272,8 +2272,8 @@ Address: %4
     </message>
     <message>
         <location line="+27"/>
-        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 32256 or testnet: 42256)</source>
-        <translation>Прослуховувати &lt;port&gt; для JSON-RPC-з&apos;єднань (типово: 32256 або тестова мережа: 42256)</translation>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 32474 or testnet: 42474)</source>
+        <translation>Прослуховувати &lt;port&gt; для JSON-RPC-з&apos;єднань (типово: 32474 або тестова мережа: 42474)</translation>
     </message>
     <message>
         <location line="+37"/>
